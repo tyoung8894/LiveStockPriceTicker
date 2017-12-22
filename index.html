@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Live stock price ticker</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(function () {
+            var socket = io();
+            //listener reacts to all received messages whos event name is 
+            //stock price update, attach anonymous function which receives
+            //the value part of the message when listener triggers it
+            socket.on('stock price update', function (stockprice) {
+                $('#stockprice').text(stockprice);
+            });
+
+        });
+    </script>
+
+</head>
+
+<body>
+    Stock price: <span id="stockprice">no data yet</span>
+</body>
+
+</html>
